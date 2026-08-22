@@ -535,7 +535,7 @@
         // --- MOUSE CONTROLS ---
         let isDragging = false;
         let previousMousePosition = { x: 0, y: 0 };
-        let cameraRadius = 450;
+        let cameraRadius = 950; // Zoomed out by default to show full solar system view
         let cameraTheta = Math.PI / 4;
         let cameraPhi = Math.PI / 6;
         let panOffset = new THREE.Vector3(0, 0, 0);
@@ -591,9 +591,9 @@
         window.addEventListener('mouseup', () => isDragging = false);
 
         container.addEventListener('wheel', (e) => {
-            cameraRadius += e.deltaY * 0.3;
+            cameraRadius += e.deltaY * 0.5;
             const minRadius = isEarthCentered ? 80 : 100;
-            cameraRadius = Math.max(minRadius, Math.min(1000, cameraRadius));
+            cameraRadius = Math.max(minRadius, Math.min(2500, cameraRadius));
             updateCameraPosition();
         });
 
